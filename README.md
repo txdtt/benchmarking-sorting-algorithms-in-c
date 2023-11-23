@@ -2,7 +2,7 @@
 [![License: GPL 3.0](https://img.shields.io/badge/License-GPL%203.0-green.svg)](https://www.gnu.org/licenses/gpl-3.0)
 <p align="justify">Este programa realiza um teste de perfomance para 7 tipos diferentes de algoritmos de ordenação, sendo eles: Quick Sort, Merge Sort, Shell Sort, Insertion Sort, Selection Sort, Bubble Sort e Bead Sort. A performance é avaliada a partir de três critérios: número de comparações realizadas, quantidade de trocas realizadas e tempo de execução, medido em segundos. O programa aceita vetores de tamanho 1 até 100000.</p>
 
-## Como Compilar
+## Como compilar
 <p align="justify">Rode "make" na raíz do diretório.</p>
 
 ```
