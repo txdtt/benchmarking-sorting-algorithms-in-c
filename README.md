@@ -10,6 +10,9 @@ make
 
 ## Como adicionar novas funções
 <p align="justify">A função de ordenação a ser inserida deve aderir aos seguintes critérios: ser do tipo long long int* e receber como parâmetros um vetor inteiro, dois valores inteiros e três ponteiros do tipo long long int*. Esses ponteiros são necessários para o cálculo das comparações  e trocas, sendo o terceiro um ponteiro para um vetor, que armazenará esses dois valores e irá retorná-los na função.</p>
+```
+make
+```
 
 ## License
 <p align="justify">This project is licensed under the GNU General Public License v3.0 - see the LICENSE file for details.</p>
