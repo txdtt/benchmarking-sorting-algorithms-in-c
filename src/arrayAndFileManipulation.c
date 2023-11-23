@@ -27,8 +27,7 @@ void welcome_msg() {
     printf("O programa aceita vetores de tamanho 1 ate 100000, incluso.\n\n\n");
 
 
-    printf("Pressione qualquer tecla para continuar... ");
-    getchar();
+    WAIT_INPUT;
 }
 
 int* get_type_of_array(int *array_to_be_sorted) {
