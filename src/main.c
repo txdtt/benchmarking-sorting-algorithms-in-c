@@ -9,7 +9,7 @@
 #endif
 
 /* 
-* Sorting Benchmark Viewer - Visualizador de performance para algoritmos de ordenação  
+* Visualizador de performance para algoritmos de ordenação  
 * Este programa realiza um teste de perfomance para 7 tipos diferentes de algoritmos
 * de ordenação, sendo eles: bubble sort, insertion sort, selection sort, shell sort, 
 * bead sort, quick sort e merge sort. A performance é avaliada a partir de três critérios:
