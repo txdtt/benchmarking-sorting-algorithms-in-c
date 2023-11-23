@@ -32,22 +32,22 @@ int *array_to_be_sorted, int left, int array_size, long long int *comps, long lo
 
 void swap(int *x, int *y);
 
-long long int* bubble_sort(int vet[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT);
+long long int* bubble_sort(int array_to_be_sorted[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT);
 
-long long int* insertion_sort(int vet[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT);
+long long int* insertion_sort(int array_to_be_sorted[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT);
 
-long long int* selection_sort(int vet[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT);
+long long int* selection_sort(int array_to_be_sorted[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT);
 
-long long int* shell_sort(int vet[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT);
+long long int* shell_sort(int array_to_be_sorted[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT);
 
-long long int* quick_sort(int v[], int left, int right, long long int *comps, long long int *swaps, long long int *arrayCT);
+long long int* quick_sort(int array_to_be_sorted[], int left, int right, long long int *comps, long long int *swaps, long long int *arrayCT);
 
-long long int* partition(int v[], int left, int right, long long int *comps, long long int *swaps, long long int *arrayCT);
+long long int* partition(int array_to_be_sorted[], int left, int right, long long int *comps, long long int *swaps, long long int *arrayCT);
 
-long long int* merge_sort(int v[], int left, int right, long long int *comps, long long int *swaps, long long int *arrayCT);
+long long int* merge_sort(int array_to_be_sorted[], int left, int right, long long int *comps, long long int *swaps, long long int *arrayCT);
 
-long long int* merge(int v[], int left, int mid, int right, long long int *comps, long long int *swaps, long long int *arrayCT);
+long long int* merge(int array_to_be_sorted[], int left, int mid, int right, long long int *comps, long long int *swaps, long long int *arrayCT);
 
-long long int* bead_sort(int vet[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT);
+long long int* bead_sort(int array_to_be_sorted[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT);
 
 #endif

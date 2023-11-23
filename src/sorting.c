@@ -102,7 +102,7 @@ void swap(int *x, int *y) {
     *y = temp;
 }
 
-long long int* bubble_sort(int vet[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT) {
+long long int* bubble_sort(int array_to_be_sorted[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT) {
     int i, j, swap_occured = 1;
 
     n++;
@@ -111,9 +111,9 @@ long long int* bubble_sort(int vet[], int m, int n, long long int *comps, long l
         swap_occured = 0;
         for(j = 0; j < n-i-1; j++){
           (*comps) += 1;
-          if (vet[j] > vet[j+1]){
+          if (array_to_be_sorted[j] > array_to_be_sorted[j+1]){
               (*swaps) += 1;
-              swap(&vet[j], &vet[j+1]);
+              swap(&array_to_be_sorted[j], &array_to_be_sorted[j+1]);
               swap_occured = 1;
           }
         }
@@ -125,21 +125,21 @@ long long int* bubble_sort(int vet[], int m, int n, long long int *comps, long l
     return arrayCT;
 }
 
-long long int* insertion_sort(int vet[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT) {
+long long int* insertion_sort(int array_to_be_sorted[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT) {
     int i, j, aux;
 
     n++;
 
     for(i = 1; i < n; i++){
-        aux = vet[i]; 
-        for(j = i-1; j >= 0 && aux < vet[j]; j--) {
+        aux = array_to_be_sorted[i]; 
+        for(j = i-1; j >= 0 && aux < array_to_be_sorted[j]; j--) {
             (*comps)++; 
             (*swaps)++;
-            vet[j+1] = vet[j];
+            array_to_be_sorted[j+1] = array_to_be_sorted[j];
         }
         if (j >= 0)
             (*comps)++;
-        vet[j+1] = aux;
+        array_to_be_sorted[j+1] = aux;
     }
 
     arrayCT[0] = *comps;
@@ -148,7 +148,7 @@ long long int* insertion_sort(int vet[], int m, int n, long long int *comps, lon
     return arrayCT;
 }
 
-long long int* selection_sort(int vet[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT) {
+long long int* selection_sort(int array_to_be_sorted[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT) {
     int i, j, min_ind;
 
     n++;
@@ -157,12 +157,12 @@ long long int* selection_sort(int vet[], int m, int n, long long int *comps, lon
         min_ind = i;
         for(j = i+1; j < n; j++) {
             (*comps)++;
-            if (vet[j] < vet[min_ind])
+            if (array_to_be_sorted[j] < array_to_be_sorted[min_ind])
                 min_ind = j;
         }
         if (min_ind != i) {
             (*swaps)++;
-            swap(&vet[min_ind], &vet[i]);
+            swap(&array_to_be_sorted[min_ind], &array_to_be_sorted[i]);
         }
     }
 
@@ -172,7 +172,7 @@ long long int* selection_sort(int vet[], int m, int n, long long int *comps, lon
     return arrayCT;
 }
 
-long long int* shell_sort(int vet[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT) {
+long long int* shell_sort(int array_to_be_sorted[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT) {
     int i, j, k, aux;
 
     n++;
@@ -180,15 +180,15 @@ long long int* shell_sort(int vet[], int m, int n, long long int *comps, long lo
     for(k = n/2; k > 0; k /= 2)
     {
         for(i = k; i < n; i++){
-            aux = vet[i]; 
-            for(j = i - k; j >= 0 && aux < vet[j]; j -= k) {
+            aux = array_to_be_sorted[i]; 
+            for(j = i - k; j >= 0 && aux < array_to_be_sorted[j]; j -= k) {
                 (*comps)++;
                 (*swaps)++;
-                vet[j+k] = vet[j];
+                array_to_be_sorted[j+k] = array_to_be_sorted[j];
             }
             if (j >= 0)
                 (*comps)++;
-            vet[j+k] = aux;
+            array_to_be_sorted[j+k] = aux;
         }
     }
 
@@ -198,34 +198,34 @@ long long int* shell_sort(int vet[], int m, int n, long long int *comps, long lo
     return arrayCT;
 }
 
-long long int* quick_sort(int v[], int left, int right, long long int *comps, long long int *swaps, long long int *arrayCT) {
+long long int* quick_sort(int array_to_be_sorted[], int left, int right, long long int *comps, long long int *swaps, long long int *arrayCT) {
 	if (left < right) {
         int med = (left+right)/2;
-        if (v[left] <= v[med] && v[left] >= v[right]){
+        if (array_to_be_sorted[left] <= array_to_be_sorted[med] && array_to_be_sorted[left] >= array_to_be_sorted[right]){
             (*comps) += 2;
         }
-        else if (v[left] >= v[med] && v[left] <= v[right]){
+        else if (array_to_be_sorted[left] >= array_to_be_sorted[med] && array_to_be_sorted[left] <= array_to_be_sorted[right]){
             (*comps) += 4;
         }
-        else if (v[med] <= v[left] && v[med] >= v[right]){
+        else if (array_to_be_sorted[med] <= array_to_be_sorted[left] && array_to_be_sorted[med] >= array_to_be_sorted[right]){
             (*comps) += 6;
             (*swaps)++;
-            swap(&v[left], &v[med]);
+            swap(&array_to_be_sorted[left], &array_to_be_sorted[med]);
         }
-        else if (v[med] >= v[left] && v[med] <= v[right]){
+        else if (array_to_be_sorted[med] >= array_to_be_sorted[left] && array_to_be_sorted[med] <= array_to_be_sorted[right]){
             (*comps) += 6;
             (*swaps)++;
-            swap(&v[left], &v[med]);
+            swap(&array_to_be_sorted[left], &array_to_be_sorted[med]);
         } 
         else {
             (*comps) += 8;
             (*swaps)++;
-            swap(&v[left], &v[right]);
+            swap(&array_to_be_sorted[left], &array_to_be_sorted[right]);
         }
 
-        int index_pivot = partition(v, left, right, comps, swaps, arrayCT)[2];
-        quick_sort(v, left, index_pivot - 1, comps, swaps, arrayCT);
-        quick_sort(v, index_pivot + 1, right, comps, swaps, arrayCT);	
+        int index_pivot = partition(array_to_be_sorted, left, right, comps, swaps, arrayCT)[2];
+        quick_sort(array_to_be_sorted, left, index_pivot - 1, comps, swaps, arrayCT);
+        quick_sort(array_to_be_sorted, index_pivot + 1, right, comps, swaps, arrayCT);	
 	}
 
     arrayCT[0] = *comps;
@@ -234,21 +234,21 @@ long long int* quick_sort(int v[], int left, int right, long long int *comps, lo
     return arrayCT;
 }
 
-long long int* partition(int v[], int left, int right, long long int *comps, long long int *swaps, long long int *arrayCT) {
-    int pivot = v[left];
+long long int* partition(int array_to_be_sorted[], int left, int right, long long int *comps, long long int *swaps, long long int *arrayCT) {
+    int pivot = array_to_be_sorted[left];
     int i = left;
     int j;
 
     for (j = left + 1; j <= right; j++) {
         (*comps)++;
-        if (v[j] <= pivot) {
+        if (array_to_be_sorted[j] <= pivot) {
             (*swaps)++;
             i+=1;
-            swap(&v[i], &v[j]);
+            swap(&array_to_be_sorted[i], &array_to_be_sorted[j]);
         }
     }
     (*swaps)++;
-    swap(&v[left], &v[i]);
+    swap(&array_to_be_sorted[left], &array_to_be_sorted[i]);
 
     arrayCT[0] = *comps;
     arrayCT[1] = *swaps;
@@ -257,14 +257,14 @@ long long int* partition(int v[], int left, int right, long long int *comps, lon
     return arrayCT; 
 }
 
-long long int* merge_sort(int v[], int left, int right, long long int *comps, long long int *swaps, long long int *arrayCT) {   
+long long int* merge_sort(int array_to_be_sorted[], int left, int right, long long int *comps, long long int *swaps, long long int *arrayCT) {   
     int mid;
 
     if (left < right) {
         mid = floor((left + right) / 2);
-        merge_sort(v, left, mid, comps, swaps, arrayCT);
-        merge_sort(v, mid + 1, right, comps, swaps, arrayCT);
-        merge(v, left, mid, right, comps, swaps, arrayCT);
+        merge_sort(array_to_be_sorted, left, mid, comps, swaps, arrayCT);
+        merge_sort(array_to_be_sorted, mid + 1, right, comps, swaps, arrayCT);
+        merge(array_to_be_sorted, left, mid, right, comps, swaps, arrayCT);
     }
 
     arrayCT[0] = *comps;
@@ -273,7 +273,7 @@ long long int* merge_sort(int v[], int left, int right, long long int *comps, lo
     return arrayCT;
 }
 
-long long int* merge(int v[], int left, int mid, int right, long long int *comps, long long int *swaps, long long int *arrayCT) {
+long long int* merge(int array_to_be_sorted[], int left, int mid, int right, long long int *comps, long long int *swaps, long long int *arrayCT) {
     int *temp, p1, p2, size, i, j, k, fim1 = 0, fim2 = 0;
     size = right - left + 1;
     p1 = left;
@@ -286,46 +286,39 @@ long long int* merge(int v[], int left, int mid, int right, long long int *comps
 
             if (!fim1 && !fim2) {
                 (*comps)++;
-                if (v[p1] < v[p2]) {
+                if (array_to_be_sorted[p1] < array_to_be_sorted[p2]) {
                     (*swaps)++;
-                    temp[i] = v[p1++];
-                    //printf("TESTE 1\n");
+                    temp[i] = array_to_be_sorted[p1++];
                 }
                 else {
                     (*swaps)++;
-                    temp[i] = v[p2++];
-                    //printf("TESTE 2\n");
+                    temp[i] = array_to_be_sorted[p2++];
                 }
 
                 if (p1 > mid) {
                     (*swaps)++;
                     fim1 = 1;
-                    //printf("TESTE 3\n");
                 }
 
                 if (p2 > right) {
                     (*swaps)++;
                     fim2 = 1;
-                    //printf("TESTE 4\n");
                 }
 
             } else {
                 (*comps)++;
                 if (!fim1) {
                     (*swaps)++;
-                    temp[i] = v[p1++];
-                    //printf("TESTE 5\n");
+                    temp[i] = array_to_be_sorted[p1++];
                 } else {
                     (*swaps)++;
-                    temp[i] = v[p2++];
-                    //printf("TESTE 6\n"); // Crasha o programa com n >= 90000
+                    temp[i] = array_to_be_sorted[p2++];
                 }
             }
         }
 
         for (j = 0, k = left; j < size; j++, k++) {
-            v[k] = temp[j];
-            //printf("TESTE 7\n");
+            array_to_be_sorted[k] = temp[j];
         }
     }
 
@@ -338,17 +331,17 @@ long long int* merge(int v[], int left, int mid, int right, long long int *comps
 
 }
 
-long long int* bead_sort(int vet[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT) {
+long long int* bead_sort(int array_to_be_sorted[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT) {
     long long int sum, max, i, j;
     unsigned char *beads;
 
     n++;
 
     // Encontra o elemento máximo no array 
-    for (i = 1, max = vet[0]; i < n; i++) {
+    for (i = 1, max = array_to_be_sorted[0]; i < n; i++) {
         (*comps)++;
-        if (vet[i] > max) {
-            max = vet[i];
+        if (array_to_be_sorted[i] > max) {
+            max = array_to_be_sorted[i];
         }
     }
 
@@ -358,7 +351,7 @@ long long int* bead_sort(int vet[], int m, int n, long long int *comps, long lon
     // Marca as contas
     for (i = 0; i < n; i++) {
         (*swaps)++;
-        for (j = 0; j < vet[i]; j++) {
+        for (j = 0; j < array_to_be_sorted[i]; j++) {
             BEAD(i, j) = 1;
         }
     }
@@ -378,7 +371,7 @@ long long int* bead_sort(int vet[], int m, int n, long long int *comps, long lon
     // Atribui os valores ordenados de volta ao array
     for (i = 0; i < n; i++) {
         for (j = 0; j < max && BEAD(i, j); j++);
-        vet[i] = j;
+        array_to_be_sorted[i] = j;
     }
 
     // Libera a memória alocada
