@@ -1,6 +1,5 @@
 # Benchmarking sorting algorithms in C
-Visualizador de performance para algoritmos de ordenação  
-Este programa realiza um teste de perfomance para 7 tipos diferentes de algoritmos
+<p>Este programa realiza um teste de perfomance para 7 tipos diferentes de algoritmos
 de ordenação, sendo eles: bubble sort, insertion sort, selection sort, shell sort, 
 bead sort, quick sort e merge sort. A performance é avaliada a partir de três critérios:
 número de comparações realizadas, quantidade de trocas realizadas e tempo de execução.
@@ -11,4 +10,4 @@ A função de ordenação a ser inserida deve aderir aos seguintes critérios: s
 long long int* e receber como parâmetros um vetor inteiro, dois valores inteiros e três
 ponteiros do tipo long long int*. Esses ponteiros são necessários para o cálculo das comparações 
 e trocas, sendo o terceiro um ponteiro para um vetor, que armazenará esses dois valores e irá
-retorná-los na função.
+retorná-los na função.</p>
