@@ -26,7 +26,7 @@ void welcome_msg() {
     printf("de ordenacao, sendo eles: bubble sort, insertion sort, selection sort, shell sort,\n");
     printf("bead sort, quick sort e merge sort. A performance e avaliada a partir de tres criterios:\n");
     printf("numero de comparacoes realizadas, quantidade de trocas realizadas e tempo de execucao.\n");
-    printf("O programa aceita vetores de tamanho 1 ate 100000, incluso.\n\n\n");
+    printf("O programa aceita vetores de tamanho 1 ate 100000.\n\n\n");
 
     WAIT_INPUT;
 }
