@@ -2,7 +2,7 @@
 <p align="justify">Este programa realiza um teste de perfomance para 7 tipos diferentes de algoritmos de ordenação, sendo eles: bubble sort, insertion sort, selection sort, shell sort, bead sort, quick sort e merge sort. A performance é avaliada a partir de três critérios: número de comparações realizadas, quantidade de trocas realizadas e tempo de execução. O programa aceita vetores de tamanho 1 até 100000.</p>
 
 ## Como rodar
-<p align="justify">Basta rodar "make" na raíz do diretório</p>
+Basta rodar "make" na raíz do diretório
 ```
 make
 ```
