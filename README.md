@@ -13,7 +13,7 @@ make
 <p align="justify">A função de ordenação a ser inserida deve aderir aos seguintes critérios: ser do tipo long long int* e receber como parâmetros um vetor inteiro, dois valores inteiros e três ponteiros do tipo long long int*. Esses ponteiros são necessários para o cálculo das comparações  e trocas, sendo o terceiro um ponteiro para um vetor, que armazenará esses dois valores e irá retorná-los na função.</p>
 
 ```c
-long long int* sort(int array_to_be_sorted[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT);
+long long int* srt(int array_to_be_sorted[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT);
 ```
 
 ## License
