@@ -13,6 +13,8 @@
 #endif
 
 void welcome_msg() {
+    printf("\e[?25l");
+
     #ifdef __GNUC__
         printf ("COMPILED ON GCC VERSION %d.%d\n\n", __GNUC__, __GNUC_MINOR__);
     #endif
@@ -26,17 +28,19 @@ void welcome_msg() {
     printf("numero de comparacoes realizadas, quantidade de trocas realizadas e tempo de execucao.\n");
     printf("O programa aceita vetores de tamanho 1 ate 100000, incluso.\n\n\n");
 
-
     WAIT_INPUT;
 }
 
 int* get_type_of_array(int *array_to_be_sorted) {
+
     char menu_option;
 
-    printf("Escolha o tipo de vetor a ser ordenado:");
-    printf("\n1 - Vetor nao ordenado\n2 - Vetor parcialmente ordenado\n3 - Vetor em ordem crescente\n4 - Vetor em ordem decrescente\n");
-
     do {
+        CLR_SCREEN;
+
+        printf("Escolha o tipo de vetor a ser ordenado:");
+        printf("\n1 - Vetor nao ordenado\n2 - Vetor parcialmente ordenado\n3 - Vetor em ordem crescente\n4 - Vetor em ordem decrescente\n");
+        printf("\e[?25h");
         menu_option = getchar();
         switch (menu_option) {
             case '1':
@@ -54,7 +58,8 @@ int* get_type_of_array(int *array_to_be_sorted) {
             default:
                 while ((menu_option = getchar()) != '\n');
                 printf("Entrada invalida! Tente novamente\n");
-                break;
+                WAIT_INPUT;
+                continue;
         }
     } while (menu_option != '1' && menu_option != '2' && menu_option != '3' && menu_option != '4');
 
