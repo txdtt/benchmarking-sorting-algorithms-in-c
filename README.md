@@ -10,10 +10,10 @@ make
 ```
 
 ## Como adicionar novas funções
-<p align="justify">A função de ordenação a ser inserida deve aderir aos seguintes critérios: ser do tipo long long int* e receber como parâmetros um vetor inteiro, dois valores inteiros e três ponteiros do tipo long long int*. Esses ponteiros são necessários para o cálculo das comparações  e trocas, sendo o terceiro um ponteiro para um vetor, que armazenará esses dois valores e irá retorná-los na função.</p>
+<p align="justify">A função de ordenação a ser inserida deve aderir aos seguintes critérios: ser do tipo size_t* e receber como parâmetros um vetor inteiro, dois valores inteiros e três ponteiros do tipo size_t*. Esses ponteiros são necessários para o cálculo das comparações  e trocas, sendo o terceiro um ponteiro para um vetor, que armazenará esses dois valores e irá retorná-los na função.</p>
 
 ```c
-long long int* sort(int array_to_be_sorted[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT);
+size_t* sort(int array_to_be_sorted[], int m, int n, size_t *comps, size_t *swaps, size_t *arrayCT);
 ```
 
 ## License
