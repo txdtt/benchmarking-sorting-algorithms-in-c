@@ -56,7 +56,7 @@ int *array_to_be_sorted, int left, int array_size, size_t *comps, size_t *swaps,
         QueryPerformanceFrequency(&frequency);
         QueryPerformanceCounter(&start);
 
-        // Declara um vetor int* que recebe o vetor "arrayCT" das funções de ordenação
+        // Declara um vetor size_t* que recebe o vetor "arrayCT" das funções de ordenação
         // "ArrayCT" possui como indíces o número de comparações e trocas, respectivamente
         size_t *dataSort = f(array_to_be_sorted, left, array_size, comps, swaps, arrayCT);
 

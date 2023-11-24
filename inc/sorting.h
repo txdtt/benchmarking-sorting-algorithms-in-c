@@ -2,7 +2,7 @@
 #define SORTING_H
 
 /* 
-*  Declara o tipo "SortFunction", que trata-se de uma função do tipo int* e possui
+*  Declara o tipo "SortFunction", que trata-se de uma função do tipo size_t* e possui
 *  seis argumentos como parâmetros, sendo esses o vetor a ser ordenado, a parte "esquerda" do
 *  vetor, utilizado pelas funções "quick_sort" e "merge_sort", o tamanho do vetor a ser
 *  ordenado, o número de comparações e o número de trocas. É utilizada para passar a função de ordenação
@@ -23,7 +23,7 @@ void print_array_data(SortFunction bufferAlgos[], int array_to_be_sorted[], int 
 *  vetor, utilizado pelas funções "quick_sort" e "merge_sort", o tamanho do vetor a ser
 *  ordenado, o número de comparações, o número de trocas e o vetor que terá como índices
 *  as comparações e trocas. É necessário utilizar um vetor para armazenar as comparações
-*  e trocas pois o ponteiro "int* dataSort" recebe a função de ordenação que foi passada como parâmetro,
+*  e trocas pois o ponteiro "size_t* dataSort" recebe a função de ordenação que foi passada como parâmetro,
 *  e as funções de ordenação retornam um ponteiro para o vetor "arrayCT", que tem como índices
 *  as comparações e trocas realizadas pela função de ordenação.
 */
