@@ -8,7 +8,7 @@
 *  ordenado, o número de comparações e o número de trocas. É utilizada para passar a função de ordenação
 *  como argumento para a função "get_sort_data" e assim escrever seus dados na tela
 */ 
-typedef long long int* (*SortFunction)(int*, int, int, long long int*, long long int*, long long int*);
+typedef size_t* (*SortFunction)(int*, int, int, size_t*, size_t*, size_t*);
 
 /* 
 *  Função que escreve os dados de perfomance do algoritmo de ordenação na tela.
@@ -27,27 +27,27 @@ void print_array_data(SortFunction bufferAlgos[], int array_to_be_sorted[], int 
 *  e as funções de ordenação retornam um ponteiro para o vetor "arrayCT", que tem como índices
 *  as comparações e trocas realizadas pela função de ordenação.
 */
-void get_sort_data(long long int* (*f)(int*, int, int, long long int*, long long int*, long long int*), 
-int *array_to_be_sorted, int left, int array_size, long long int *comps, long long int *swaps, long long int* arrayCT);
+void get_sort_data(size_t* (*f)(int*, int, int, size_t*, size_t*, size_t*), 
+int *array_to_be_sorted, int left, int array_size, size_t *comps, size_t *swaps, size_t* arrayCT) ;
 
 void swap(int *x, int *y);
 
-long long int* bubble_sort(int array_to_be_sorted[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT);
+size_t* bubble_sort(int array_to_be_sorted[], int m, int n, size_t *comps, size_t *swaps, size_t *arrayCT);
 
-long long int* insertion_sort(int array_to_be_sorted[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT);
+size_t* insertion_sort(int array_to_be_sorted[], int m, int n, size_t *comps, size_t *swaps, size_t *arrayCT);
 
-long long int* selection_sort(int array_to_be_sorted[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT);
+size_t* selection_sort(int array_to_be_sorted[], int m, int n, size_t *comps, size_t *swaps, size_t *arrayCT);
 
-long long int* shell_sort(int array_to_be_sorted[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT);
+size_t* shell_sort(int array_to_be_sorted[], int m, int n, size_t *comps, size_t *swaps, size_t *arrayCT);
 
-long long int* quick_sort(int array_to_be_sorted[], int left, int right, long long int *comps, long long int *swaps, long long int *arrayCT);
+size_t* quick_sort(int array_to_be_sorted[], int left, int right, size_t *comps, size_t *swaps, size_t *arrayCT);
 
-long long int* partition(int array_to_be_sorted[], int left, int right, long long int *comps, long long int *swaps, long long int *arrayCT);
+size_t* partition(int array_to_be_sorted[], int left, int right, size_t *comps, size_t *swaps, size_t *arrayCT);
 
-long long int* merge_sort(int array_to_be_sorted[], int left, int right, long long int *comps, long long int *swaps, long long int *arrayCT);
+size_t* merge_sort(int array_to_be_sorted[], int left, int right, size_t *comps, size_t *swaps, size_t *arrayCT);
 
-long long int* merge(int array_to_be_sorted[], int left, int mid, int right, long long int *comps, long long int *swaps, long long int *arrayCT);
+size_t* merge(int array_to_be_sorted[], int left, int mid, int right, size_t *comps, size_t *swaps, size_t *arrayCT);
 
-long long int* bead_sort(int array_to_be_sorted[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT);
+size_t* bead_sort(int array_to_be_sorted[], int m, int n, size_t *comps, size_t *swaps, size_t *arrayCT);
 
 #endif

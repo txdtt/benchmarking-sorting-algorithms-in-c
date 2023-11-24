@@ -1,16 +1,18 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 #include <time.h>
 #include <ctype.h>
-#include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <malloc.h>
 
 #include "../inc/sorting.h"
 #include "../inc/arrayAndFileManipulation.h"
 
 #ifdef _WIN32
     #include <windows.h>
+    #include <psapi.h>
 #endif
 
 #define BEAD(i, j) beads[i * max + j]
@@ -19,7 +21,7 @@
 void print_array_data(SortFunction bufferAlgos[], int array_to_be_sorted[], int array_size, const char* sortName[]) {
     // Declara as comparações, trocas e o vetor que irá armazenar esses dados
     int i;
-    long long int comps, swaps, arrayCompsAndSwaps[MAX_ARGS];
+    size_t comps, swaps, arrayCompsAndSwaps[MAX_ARGS];
 
     printf("-------- TAMANHO %d --------\n", array_size);
 
@@ -36,8 +38,8 @@ void print_array_data(SortFunction bufferAlgos[], int array_to_be_sorted[], int 
 }
 
 // Calcula os dados de performance das funções de ordenação
-void get_sort_data(long long int* (*f)(int*, int, int, long long int*, long long int*, long long int*), 
-int *array_to_be_sorted, int left, int array_size, long long int *comps, long long int *swaps, long long int* arrayCT) {
+void get_sort_data(size_t* (*f)(int*, int, int, size_t*, size_t*, size_t*), 
+int *array_to_be_sorted, int left, int array_size, size_t *comps, size_t *swaps, size_t* arrayCT)  {
     #ifdef _WIN32
         // Declara as variáveis que serão utilizadas pelas funções de medição de tempo de execução (QueryPerformance)
         LARGE_INTEGER frequency;
@@ -56,15 +58,16 @@ int *array_to_be_sorted, int left, int array_size, long long int *comps, long lo
 
         // Declara um vetor int* que recebe o vetor "arrayCT" das funções de ordenação
         // "ArrayCT" possui como indíces o número de comparações e trocas, respectivamente
-        long long int *dataSort = f(array_to_be_sorted, left, array_size, comps, swaps, arrayCT);
+        size_t *dataSort = f(array_to_be_sorted, left, array_size, comps, swaps, arrayCT);
 
-        // Para o cronômetro
+        // Para o cronômetr
         QueryPerformanceCounter(&end);
+
         // Calcula o tempo de execução, em segundos
         elapsed_time = (double)(end.QuadPart - start.QuadPart) / frequency.QuadPart;
 
         // Escreve na tela o número de comparações, trocas e o tempo de execução da função de ordenação
-        printf("Comparacoes = %12lld; Trocas = %12lld; Tempo = %12lf segundos\n", dataSort[0], dataSort[1], elapsed_time);
+        printf("Comparacoes = %12llu; Trocas = %12llu; Tempo = %12lf segundos\n", dataSort[0], dataSort[1], elapsed_time);
     #else
         // Limpa o vetor
         for (int i = 0; i < MAX_ARGS; i++) {
@@ -77,7 +80,7 @@ int *array_to_be_sorted, int left, int array_size, long long int *comps, long lo
 
         // Declara um vetor int* que recebe o vetor "arrayCT" das funções de ordenação
         // "ArrayCT" possui como indíces o número de comparações e trocas, respectivamente
-        int *dataSort = f(vet, left, right, comps, swaps, arrayCT);
+        long long int *dataSort = f(array_to_be_sorted, left, array_size, comps, swaps, arrayCT);
 
         // Para o cronômetro
         clock_t end = clock();
@@ -85,7 +88,7 @@ int *array_to_be_sorted, int left, int array_size, long long int *comps, long lo
         double elapsed_time = (double)(end - begin) / CLOCKS_PER_SEC;
 
         // Escreve na tela o número de comparações, trocas e o tempo de execução da função de ordenação
-        printf("Comparacoes = %12d; Trocas = %12d; Tempo = %12lf\n", dataSort[0], dataSort[1], elapsed_time);
+        printf("Comparacoes = %12lld; Trocas = %12lld; Tempo = %12lf segundos\n", dataSort[0], dataSort[1], elapsed_time);
     #endif
 
     /*
@@ -102,7 +105,7 @@ void swap(int *x, int *y) {
     *y = temp;
 }
 
-long long int* bubble_sort(int array_to_be_sorted[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT) {
+size_t* bubble_sort(int array_to_be_sorted[], int m, int n, size_t *comps, size_t *swaps, size_t *arrayCT) {
     int i, j, swap_occured = 1;
 
     n++;
@@ -125,7 +128,7 @@ long long int* bubble_sort(int array_to_be_sorted[], int m, int n, long long int
     return arrayCT;
 }
 
-long long int* insertion_sort(int array_to_be_sorted[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT) {
+size_t* insertion_sort(int array_to_be_sorted[], int m, int n, size_t *comps, size_t *swaps, size_t *arrayCT) {
     int i, j, aux;
 
     n++;
@@ -148,7 +151,7 @@ long long int* insertion_sort(int array_to_be_sorted[], int m, int n, long long 
     return arrayCT;
 }
 
-long long int* selection_sort(int array_to_be_sorted[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT) {
+size_t* selection_sort(int array_to_be_sorted[], int m, int n, size_t *comps, size_t *swaps, size_t *arrayCT) {
     int i, j, min_ind;
 
     n++;
@@ -172,7 +175,7 @@ long long int* selection_sort(int array_to_be_sorted[], int m, int n, long long 
     return arrayCT;
 }
 
-long long int* shell_sort(int array_to_be_sorted[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT) {
+size_t* shell_sort(int array_to_be_sorted[], int m, int n, size_t *comps, size_t *swaps, size_t *arrayCT) {
     int i, j, k, aux;
 
     n++;
@@ -198,7 +201,7 @@ long long int* shell_sort(int array_to_be_sorted[], int m, int n, long long int 
     return arrayCT;
 }
 
-long long int* quick_sort(int array_to_be_sorted[], int left, int right, long long int *comps, long long int *swaps, long long int *arrayCT) {
+size_t* quick_sort(int array_to_be_sorted[], int left, int right, size_t *comps, size_t *swaps, size_t *arrayCT) {
 	if (left < right) {
         int med = (left+right)/2;
         if (array_to_be_sorted[left] <= array_to_be_sorted[med] && array_to_be_sorted[left] >= array_to_be_sorted[right]){
@@ -234,7 +237,7 @@ long long int* quick_sort(int array_to_be_sorted[], int left, int right, long lo
     return arrayCT;
 }
 
-long long int* partition(int array_to_be_sorted[], int left, int right, long long int *comps, long long int *swaps, long long int *arrayCT) {
+size_t* partition(int array_to_be_sorted[], int left, int right, size_t *comps, size_t *swaps, size_t *arrayCT) {
     int pivot = array_to_be_sorted[left];
     int i = left;
     int j;
@@ -257,7 +260,7 @@ long long int* partition(int array_to_be_sorted[], int left, int right, long lon
     return arrayCT; 
 }
 
-long long int* merge_sort(int array_to_be_sorted[], int left, int right, long long int *comps, long long int *swaps, long long int *arrayCT) {   
+size_t* merge_sort(int array_to_be_sorted[], int left, int right, size_t *comps, size_t *swaps, size_t *arrayCT) {   
     int mid;
 
     if (left < right) {
@@ -273,7 +276,7 @@ long long int* merge_sort(int array_to_be_sorted[], int left, int right, long lo
     return arrayCT;
 }
 
-long long int* merge(int array_to_be_sorted[], int left, int mid, int right, long long int *comps, long long int *swaps, long long int *arrayCT) {
+size_t* merge(int array_to_be_sorted[], int left, int mid, int right, size_t *comps, size_t *swaps, size_t *arrayCT) {
     int *temp, p1, p2, size, i, j, k, fim1 = 0, fim2 = 0;
     size = right - left + 1;
     p1 = left;
@@ -331,8 +334,9 @@ long long int* merge(int array_to_be_sorted[], int left, int mid, int right, lon
 
 }
 
-long long int* bead_sort(int array_to_be_sorted[], int m, int n, long long int *comps, long long int *swaps, long long int *arrayCT) {
-    long long int sum, max, i, j;
+size_t* bead_sort(int array_to_be_sorted[], int m, int n, size_t *comps, size_t *swaps, size_t *arrayCT) {
+    size_t sum, max;
+    int i, j;
     unsigned char *beads;
 
     n++;
@@ -346,7 +350,7 @@ long long int* bead_sort(int array_to_be_sorted[], int m, int n, long long int *
     }
 
     // Aloca memória para o array de contas
-    beads = calloc(1, max * n);
+    beads = malloc(max * n);
 
     // Marca as contas
     for (i = 0; i < n; i++) {
@@ -381,5 +385,4 @@ long long int* bead_sort(int array_to_be_sorted[], int m, int n, long long int *
     arrayCT[1] = *swaps;
 
     return arrayCT;
-
 }
