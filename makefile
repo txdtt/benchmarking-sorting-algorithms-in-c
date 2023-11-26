@@ -23,7 +23,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
 $(BIN_DIR) $(OBJ_DIR):
-	mkdir -p $@
+	mkdir $@
 
 clean:
 	@$(RM) -rv $(BIN_DIR) $(OBJ_DIR)
