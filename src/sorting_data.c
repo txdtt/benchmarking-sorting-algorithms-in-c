@@ -28,10 +28,11 @@ SortFunction* get_sorting_algos(SortFunction bufferAlgos[], const char *sortName
         CLR_SCREEN;
 
         printf("Selecione quais algoritmos serao utilizados: \n");
-        printf("\n1 - Quick Sort\t   [%c]\n2 - Merge Sort\t   [%c]\n3 - Shell Sort\t   [%c]\n4 - Insertion Sort [%c]\n5 - Selection Sort [%c]\n6 - Bubble Sort\t   [%c]\n7 - Bead Sort\t   [%c]\n8 - Avancar\n", 
+        printf("\n1 - Quick Sort\t   [%c]\n2 - Merge Sort\t   [%c]\n3 - Shell Sort\t   [%c]\n4 - Insertion Sort [%c]\n5 - Selection Sort [%c]\n6 - Bubble Sort\t   [%c]\n7 - Bead Sort\t   [%c]\nENTER - Avancar\n", 
         selected_sort[0], selected_sort[1], selected_sort[2], selected_sort[3], selected_sort[4], selected_sort[5], selected_sort[6]);
         printf("\e[?25h");
         menu_option = getchar();
+
         switch (menu_option) {
             case '1':
                 while ((menu_option = getchar()) != '\n');
@@ -89,7 +90,7 @@ SortFunction* get_sorting_algos(SortFunction bufferAlgos[], const char *sortName
                 j++;
                 loop_again = true;
                 continue;
-            case '8':
+            case ENTER:
                 loop_again = false;
                 break;
             default:
@@ -100,8 +101,6 @@ SortFunction* get_sorting_algos(SortFunction bufferAlgos[], const char *sortName
                 continue;
         }
     } while (loop_again);
-
-    while ((menu_option = getchar()) != '\n');
 
     return bufferAlgos;
 }
@@ -355,7 +354,6 @@ void print_array_data(SortFunction bufferAlgos[], int array_to_be_sorted[], int 
     printf("-------- TAMANHO %d --------\n", array_size);
 
     for (i = 0; i < number_of_elements; i++) { 
-        //printf("%llu\n", number_of_elements);
         comps = 0; swaps = 0;
         // Escreve o nome do algoritmo na tela
         printf("--- %s ---\n", sortName[i]);
@@ -363,6 +361,9 @@ void print_array_data(SortFunction bufferAlgos[], int array_to_be_sorted[], int 
         get_sort_data(bufferAlgos[i], array_to_be_sorted, 0, array_size-1, &comps, &swaps, arrayCompsAndSwaps);
     }
 
+    for (i = 0; i < SORT_FUNCTIONS; i++) {
+        bufferAlgos[i] = '\0';
+    }
 
     printf("\n\n");
 }

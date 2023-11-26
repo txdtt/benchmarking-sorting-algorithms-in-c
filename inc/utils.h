@@ -1,6 +1,9 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+#define ENTER  0x0A 
+#define ESCAPE 0x1B
+
 #ifdef _WIN32
     #define CLR_SCREEN system("cls");
     #define WAIT_INPUT system("pause");

@@ -49,6 +49,28 @@ int* restart(int *retry) {
 
 int exit_program() {
     CLR_SCREEN;
-    exit(0);
+
+    char menu_option;
+
+    do {
+        printf("Deseja sair do programa? (S/N):");
+        menu_option = getchar();
+        switch (menu_option) {
+            case 'S':
+                exit(0);
+                break;
+            case 'N':
+                return 0;
+                break;
+            default:
+                while ((menu_option = getchar()) != '\n');
+                printf("Entrada invalida! Tente novamente\n");
+                WAIT_INPUT;
+                continue;
+        }
+
+    } while (menu_option != 'S' && menu_option != 'N');
+
     return 0;
+
 }

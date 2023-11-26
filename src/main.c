@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
 
     } while (retry == '1');
 
-    exit_program();
+    CLR_SCREEN;
 
     return 0;
 }
