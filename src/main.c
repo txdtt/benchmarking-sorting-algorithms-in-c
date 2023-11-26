@@ -1,6 +1,9 @@
 #include <stdio.h>
-#include "../inc/sorting.h"
-#include "../inc/arrayAndFileManipulation.h"
+
+#include "../inc/sorting_data.h"
+#include "../inc/file_io.h"
+#include "../inc/sorting_algos.h"
+#include "../inc/utils.h"
 
 #ifdef _WIN32
     #include <windows.h>
@@ -23,15 +26,19 @@ int main(int argc, char *argv[]) {
     int array_to_be_sorted[MAX_ARRAY_SIZE], array_size, retry;
 
     // Vetor do tipo "SortFunction". Este vetor possui os ponteiros para as funções de ordenação
-    SortFunction bufferAlgos[] = {quick_sort, merge_sort, shell_sort, insertion_sort, selection_sort, bubble_sort, bead_sort};
+    // SortFunction bufferAlgos[] = {quick_sort, merge_sort, shell_sort, insertion_sort, selection_sort, bubble_sort, bead_sort};
+    SortFunction bufferAlgos[SORT_FUNCTIONS];
 
     // Vetor com os nomes das funções
-    const char *sortName[] = {"QUICK SORT", "MERGE SORT", "SHELL SORT", "INSERTION SORT", "SELECTION SORT", "BUBBLE SORT", "BEAD SORT"}; 
+    // const char *sortName[] = {"QUICK SORT", "MERGE SORT", "SHELL SORT", "INSERTION SORT", "SELECTION SORT", "BUBBLE SORT", "BEAD SORT"}; 
+    const char *sortName[SORT_FUNCTIONS]; 
 
     welcome_msg();
 
     do {
         CLR_SCREEN
+
+        get_sorting_algos(bufferAlgos, sortName);
 
         get_type_of_array(array_to_be_sorted);
 
